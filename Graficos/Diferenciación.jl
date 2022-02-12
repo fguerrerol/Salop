@@ -1,4 +1,37 @@
+#### Inicialización de librerías  y seteo de directorio madre#####
+
+cd("/home/jesus/Documentos/MEcon/Tesis-Posibles/Salop/Graficos")
 using Plots
+
+
+#### Seccion dependiente de N #####
+### Aqui se grafica la variable, dependiente unicamente del numero de bancos en el sistema###
+
+
+### Inicializacion del Vector N #####
+
+### Para terminos de graficos va de 2 hasta 20
+n = collect(2:1:20)
+
+### Inicialización de las funciones #####
+
+#### Modo 1: Sin Competencia con firma del centro #######
+theta_p_modo1(x) =  (A^2)/((tau_p+(1/(x)))^2)
+#### Modo 2: Con Competencia de la firma del centro ######
+theta_p_modo2(x) = (A^2)/(4*(delta+tau_c0)*(1-(1/(2*x))))
+
+
+### Para terminos de determinar un nivel y ver la evolución, los costos 
+### de diferenciacion se vuelven unitarios.
+tau_p = 1
+tau_c0 = 1
+#### La distancia delta también tendrá inicialmente un nivel bajo
+delta = 0.2 
+
+
+
+
+
 
 
 tau_p = collect(1:0.01:2)
