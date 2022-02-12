@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>Sci-Hub | Spatial competition in the banking system: 
+Localization, cross subsidies and the regulation of deposit rates. 
+European Economic Review, 39(5), 889–918 | 10.1016/0014-2921(94)00016-S</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <script type="text/javascript" async="" src="Chiappori1995_files/watch.js"></script><script src="Chiappori1995_files/jquery-3.js"></script>
+        <script src="Chiappori1995_files/snowflakes.js"></script>
+    </head>
+    <body>
+    <script type="text/javascript">
+        
+        var menu;
+        var article;
+        var position;
+        function rollupi()
+        {
+            position = position - 2;
+            menu.style.left = position.toString() + 'vw';
+            article.style.left = (position + 20).toString() + 'vw';
+            article.style.width = (80 - position).toString() + 'vw';
+            if (position > -20)
+                setTimeout(rollupi, 33);
+            else
+                document.getElementById('rollback').style.display = 'block';
+        }
+        function rollup()
+        {
+            $.get("https://sci-hub.se/rollup/on?rand=" + (Math.random() + 1).toString(36).substring(7));
+            menu = document.getElementById('minu');
+            article = document.getElementById('article');
+            position = 0;
+            rollupi();
+        }
+        function rollbacki()
+        {
+            position = position + 2;
+            menu.style.left = position.toString() + 'vw';
+            article.style.left = (position + 20).toString() + 'vw';
+            article.style.width = (80 - position).toString() + 'vw';
+            if (position < 0)
+                setTimeout(rollbacki, 33);
+        }
+        function rollback()
+        {
+            $.get("https://sci-hub.se/rollup/off?rand=" + (Math.random() + 1).toString(36).substring(7));
+            menu = document.getElementById('minu');
+            article = document.getElementById('article');
+            document.getElementById('rollback').style.display = 'none';
+            document.getElementById('roll').style.display = 'block';
+            position = -20;
+            rollbacki();
+        }
+        function rollshow()
+        {
+            document.getElementById('roll').style.display = 'none';
+        }
+        
+        function clip(element)
+        {
+          var $temp = $("<input>");
+          $("body").append($temp);
+          $temp.val($(element).text()).select();
+          document.execCommand("copy");
+          $temp.remove();
+        }
+        
+        
+        var sf;
+        var sfrun;
+        var logoi;
+        var rolli;
+        var garland;
+        var donate;
+        
+        function snow()
+        {
+            if (sfrun)
+            {
+                logoi.src = '//sci-hub.se/misc/img/ravenround.gif';
+                rolli.src = '//sci-hub.se/misc/img/ravenround.gif';
+                garland.style.display = 'none';
+                donate.style.display = 'block';
+                sf.stop();
+                sfrun = false;
+            }
+            else
+            {
+                logoi.src = '//sci-hub.se/misc/img/ravenround-santa.gif';
+                rolli.src = '//sci-hub.se/misc/img/ravenround-santa.gif';
+                garland.style.display = 'block';
+                donate.style.display = 'none';
+                sf.start();
+                sfrun = true;
+            }
+        }
+        
+        function xmas()
+        {
+            snow();
+        }
+        
+        function keyp(event)
+        {
+            if (event.ctrlKey && event.key === "x")
+            {
+                xmas();
+                event.preventDefault();
+            }
+        }
+        
+        
+        var mailticket = false;
+        var mailblock = false;
+        
+        function mailsend()
+        {
+            if (!mailticket)
+                return false;
+            if (mailblock)
+                return false;
+            
+            mailblock = true;
+            var button = document.getElementById('mailsubbtn');
+            button.innerHTML = 'Subscribing...';
+            button.style.background = '#999';
+
+            var email = document.getElementById('email');
+            email.style.border = 'none';
+            email.style.borderBottom = 'solid 1px #999';
+            
+            email = email.value;
+            if (!email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/))
+                return false;
+        
+            var Http = new XMLHttpRequest();
+            const url = 'https://sci-hub.se/subscribe/' + email + '/' + mailticket;
+            Http.open("GET", url);
+            Http.responseType = 'text';
+            Http.send();
+
+            Http.onload = function () {
+              if (Http.readyState === Http.DONE) {
+                if (Http.responseText == 'OK')
+                {
+                  document.getElementById('minime').style.display = 'none';
+                  document.getElementById('mail').style.display = 'none';
+                  document.getElementById('mailok').style.display = 'block';
+                  document.getElementById('maildescone').style.display = 'none';
+                  document.getElementById('maildesctwo').style.display = 'block';
+                }
+                else
+                {
+                  document.getElementById('minime').style.display = 'none';
+                  document.getElementById('mail').style.display = 'none';
+                  document.getElementById('mailok').style.display = 'block';
+                  document.getElementById('maildescone').style.display = 'none';
+                  document.getElementById('mailerr').style.display = 'block';
+                }
+              }
+            }
+        }
+    
+        function mailclose()
+        {
+            document.getElementById('mailbox').style.display = 'none';
+            document.getElementById('mailclose').style.display = 'none';
+            document.getElementById('curtain').style.display = 'none';
+        }
+        
+        function subscribe()
+        {
+            document.getElementById('curtain').style.display = 'block';
+            document.getElementById('mailbox').style.display = 'block';
+            document.getElementById('mailclose').style.display = 'block';
+            document.getElementById('minime').src = '//sci-hub.se/misc/img/888.gif';
+        }
+        function miniplay()
+        {
+            document.getElementById('minime').src = '//sci-hub.se/misc/img/888.png';
+        }
+        
+        
+        
+        $(document).ready(function()
+        {
+            var doi = '10.1016/0014-2921(94)00016-S';
+            if ((doi.substr(0, 7) != '10.0000') &&
+                (!/\S/.test($('#citation').text())))
+                $("#citation").load('//sci-hub.se/cite/10.1016/0014-2921(94)00016-S');
+            
+            setTimeout(rollshow, 1000);
+            
+            logoi = document.getElementById("logo");
+            rolli = document.getElementById("rollimg");
+            garland = document.getElementById('garland');
+            donate = document.getElementById('donate');
+            
+            sf = new Snowflakes({
+                color: "#A2A2A2",
+                count: 128,
+                minSize: 12,
+                maxSize: 55
+            });
+            
+            sf.stop();
+            sfrun = false;
+            
+            $(document).keydown(keyp);
+            
+            if (mailticket)
+                setTimeout(subscribe, 2000);
+        //    setTimeout(miniplay, 5140);
+        });
+        
+    </script>
+    <style type="text/css">
+        
+        html, body {height: 100vh; width:100vw; margin: 0; padding: 0; overflow:hidden}
+        div {font-family: -apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif}
+
+        @font-face {font-family: 'Cookie'; src: url('//sci-hub.se/misc/fonts/Cookie-Regular.ttf') format('truetype');}
+        
+        #minu {width: 19.9vw;
+               height: 100vh;
+               position: absolute;
+               z-index: 1;
+               top: 0;
+               left: -20vw;
+               background-color: white;
+               border-right: solid 0.1vw #dfdfdf;
+               overflow: hidden}
+
+        #roll {display: none;
+               position:absolute;
+               z-index: 2;
+               top: 12vw; left: 17vw;
+               width: 4vw; height: 4vw;
+               border: solid 1vw #dfdfdf;
+               border-radius: 4vw;
+               color: #999;
+               font-size: 3vw;
+               line-height: 3vw;
+               cursor: pointer;
+               background: #dfdfdf}
+        
+        #roll:hover {background: #d3d3d3;
+                     border-color:#d3d3d3}
+        
+        #rollback{display: block;
+                  position: absolute;
+                  top: 40vh;
+                  left: 0;
+                  background: none;
+                  z-index: 4;
+                  cursor: pointer}
+        
+        #rollback img {}
+        
+        #article {width: 100vw;
+                  height: 100vh;
+                  position: absolute;
+                  z-index: 3;
+                  top: 0;
+                  left: 0}
+
+        embed {width:100%;
+               height:100%}
+        
+        #header {cursor: pointer}
+        
+        #header div {display: inline-block;
+                     vertical-align: middle;
+                     text-align: center}
+        
+        #header div:nth-of-type(1) {width: 10vw; margin-left:1.2vw}
+        #header div:nth-of-type(2) {width: 8vw; margin-top: 1vw}
+        
+	#logo {min-width: 96px;
+               width: 100%;
+               height: auto}
+        
+	#sci {color: darkred;
+              font-size: 3vw;
+              font-family: monospace}
+        
+        #sci .u {border-bottom: 0.17vw solid darkred;
+                padding-bottom: 0.1vw}
+        
+	#motto {padding-top: 1vw;
+                color: #999;
+                font-size: 1vw;
+                font-family: monospace}
+
+        #minu #buttons {width: 100%;
+                        margin-top: 6vh}
+        
+        #buttons button {margin-left: 2vw;
+                        cursor: pointer;
+                        color: #999;
+                        font-family: monospace;
+                        font-size: 1.22vw;
+                        background: white;
+                        border-radius: 0.4vw;
+                        border: solid 0.1vw #999;
+                        padding: 0.8vh 0.4vw 0.8vh 0.4vw}
+        
+        #buttons button:hover { background: #efefef }
+
+	#citation {margin: 3vh 2vw 0 2vw;
+                   font-size: 1vw;
+                   font-family: monospace;
+                   cursor: pointer}
+        
+        #citation:active {color:#aaa}
+	#citation a {color:#999;text-decoration:none}
+	#citation a:hover {text-decoration:underline}
+
+	#link {margin: 3vh 2vw 0 2vw; font-size: 1vw; color:#aaa}
+	#link a {color: #aaa; text-decoration: none; word-wrap: break-all; word-break: break-all}
+        #link a:hover {background: #eee}
+        
+	#networks {margin: 3vh 2vw 0 2vw; font-size: 1vw; color: darkred; font-family: monospace}
+	#networks a {color: #444; text-decoration: none; font-family: monospace }
+        #networks a:hover {background-color: darkred; color: white}
+        
+	#donate {margin: 3vh 2vw 0 2vw; font-size: 1vw; color:#aaa}
+	#donate a {color: #aaa; text-decoration: none; font-family: monospace}
+        #donate a:hover {background-color:green; color: white}
+        
+	#versions {margin: 3vh 0 0 2vw; font-size: 1vw; color:#aaa}
+	#versions a {color: black; text-decoration: none}
+	#versions a:hover {text-decoration: underline}
+        
+        #creator {position: absolute;
+                  z-index: 2;
+                  bottom: 4vh;
+                  left: 2vw;
+                  font-size: 0.8vw;
+                  font-family: monospace}
+        
+        #creator a { color: #aaa; text-decoration: none }
+        #creator a:hover { background-color: orange; color: white }
+        #creator img { width: 11vw; height: auto }
+        
+        
+        
+        #mailbox { background: white; position: absolute; display: none; z-index: 100; left: 22vw; top: 22vh; width: 40vw; border: solid 1px #ccc; box-shadow: 10px 10px 10px 2px rgba(34, 60, 80, 0.2); border-radius: 0.6vw }
+        #mailbox #stamp { display: inline-block; margin: -4% 0 0 -4%; max-width: 12%; vertical-align: top }
+        #mailbox #stamp img { width: 90% }
+        #mailbox #subscribe { width: 90% }
+        #mailbox #subscribe { display: inline-block; max-width: 85%; vertical-align: top; }
+        #mailbox #subscribe #title { font-size: 3.99rem; font-family: Cookie; text-align: center }
+        #mailbox #subscribe .description { font-family: monospace; margin: 2vh 0 0 1vw; font-size: 1.11rem; text-align: justify; text-decoration: underline white; }
+        #mailbox #subscribe #maildesctwo p {font-size: 1.77rem; text-align: center; color:darkred;font-weight:bold}
+        #mailbox #subscribe #maildesctwo {display:none;text-decoration: none}
+        #mailbox #subscribe #mailerr {display:none}
+        #mailbox #subscribe #mail { text-align: left; margin-top: 2rem; }
+        #mailbox #subscribe #mail input { vertical-align: middle; line-height: 1.33rem; font-size: 1.22rem; text-align: center; width: 66%; margin-left: 1vw; padding: 0.6vw; }
+        #mailbox #subscribe #mail button { vertical-align: middle; margin-left: 1%; padding: 0.6vw; font-size: 1.22rem; max-width: 24%; cursor: pointer; border-radius: 0.4vw; border: solid 1px white; background-color: goldenrod; color: white }
+        #mailbox #subscribe #mail button:hover { background-color: green; }
+        #mailbox #subscribe #minime {max-width: 50%;margin-top: 2rem}
+        #mailbox #mailok button { padding: 0.6vw 1.66vw 0.6vw 1.66vw; font-size: 1.22rem; cursor: pointer; border-radius: 0.4vw; border: solid 1px white; background-color: goldenrod; color: white }
+        #mailbox #mailok button:hover {background-color: green}
+        #mailbox #mailok { display:none; text-align: center; margin-top: 2rem; padding-bottom: 2rem }
+        #mailclose { position: absolute; display: none; z-index: 100; left: 22.5vw; top: 21vh; width: 40vw; text-align: right }
+        #mailclose #close { border-radius: 50%; background: white; border: solid 1px #aaa; cursor: pointer; font-size: 1rem; width: 1.7rem; height: 1.7rem }
+        #mailclose #close:hover { background: darkred; color: white; border-color: white }
+        
+        #curtain
+        {
+          display: none;
+          content: " ";
+          z-index: 10;
+          position: absolute;
+          height: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: rgba(0, 0, 0, 0.5);
+        }
+        
+    </style>
+    
+    <div id="creator">
+        created by: <a target="_blank" href="https://sci-hub.se/alexandra">Alexandra Elbakyan</a>
+    </div>
+
+    <div id="roll" onclick="rollup()" style="display: none;">◂</div>
+    <div id="rollback" onclick="rollback()">
+        <img id="rollimg" src="Chiappori1995_files/ravenround.gif">
+    </div>
+    
+    <div id="minu">
+        
+        <div id="header" onclick="location.href='https://sci-hub.se/'">
+            <div>
+                <img id="logo" src="Chiappori1995_files/ravenround.gif">
+            </div>
+            <div>
+                <span id="sci"><span class="u">sci</span><br>hub</span><br>
+                <span id="motto">to open science</span>
+            </div>
+        </div>
+        
+	<div id="buttons">
+            <button onclick="location.href='https://zero.sci-hub.se/1585/838d96211074c562e3c7568e8bccf7ca/chiappori1995.pdf?download=true'">↓ save</button>
+	</div>
+
+        
+    <div id="garland" style="display:none;text-align:left;margin-left:2vw;margin-top:2vh"><img src="Chiappori1995_files/garland_new.jpg" style="max-width:55%"></div>
+
+      
+	<div id="citation" onclick="clip(this)">Chiappori, P.-A., Perez-Castrillo, D., &amp; Verdier, T. (1995). <i>Spatial
+ competition in the banking system: Localization, cross subsidies and 
+the regulation of deposit rates. European Economic Review, 39(5), 
+889–918.</i> doi:10.1016/0014-2921(94)00016-s&nbsp;</div>
+
+        <div id="link">
+            url to share this paper:<br>
+            <a href="https://sci-hub.se/10.1016/0014-2921(94)00016-S">sci-hub.se/10.1016/0014-2921(94)00016-S</a>
+        </div>
+        
+        <div id="versions">
+                    </div>
+        
+        <div id="networks">
+            Sci-Hub in social media<br>
+            <a target="_blank" href="https://www.facebook.com/sci.hub.org">facebook</a><br>
+            <a target="_blank" href="https://www.youtube.com/watch?v=lEorO3kKmv8">youtube</a><br>
+            <a target="_blank" href="https://twitter.com/Sci_Hub_tweets">twitter</a>
+        </div>
+        
+        <div id="donate">
+            <a target="_blank" href="https://sci-hub.se/cryptodonate">donate to Sci-Hub →</a><br>
+        </div>
+        
+    </div>
+
+    
+    <div id="mailbox">
+
+        <div id="stamp"><img src="Chiappori1995_files/mailkiss.png"></div><div id="subscribe">
+            <div id="title">Subscribe to Sci-Hub newsletter</div>
+            <div class="description" id="maildescone">Sci-Hub domains 
+are routinely blocked. Add your email to Sci-Hub mailing list to get 
+regularly updated list of Sci-Hub addresses. You will also get an 
+up-to-date information about Sci-Hub current status and development, and
+ have an opportunity to test new features early. <b>No spam promised!</b></div>
+            <div class="description" id="maildesctwo"><p>Thank you for joining Sci-Hub mailing list!</p>A letter has been send to your email to confirm subscription. If not received, check the Spam folder.</div>
+            <div class="description" id="mailerr">Some error happened while tryig to subscribe to Sci-Hub newsletter. Try again later</div>
+            <div id="mail"><input type="text" placeholder="name@example.com" id="email"><button id="mailsubbtn" onclick="mailsend()">Subscribe me!</button></div>
+            <div id="mailok"><button onclick="mailclose()">OK</button></div>
+            <div><img id="minime" src="Chiappori1995_files/888.png"></div>
+        </div>
+
+
+    </div>
+    <div id="mailclose"><button id="close" onclick="mailclose()">x</button></div>
+    <div id="curtain"></div>
+    
+    <div id="article">
+        <embed type="application/pdf" src="Chiappori1995_files/chiappori1995.pdf" id="pdf">
+    </div>
+    
+<!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter10183018 = new Ya.Metrika({ id:10183018, clickmap:true, trackLinks:true, accurateTrackBounce:true, ut:"noindex" }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <noscript><div><img src="https://mc.yandex.ru/watch/10183018?ut=noindex" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
+    
+
+<div class="snowflakes snowflakes_gid_1 snowflakes_body snowflakes_paused" style="z-index: 9999; display: block;"><div style="animation-name: snowflake_gid_1_y; animation-delay: 5.3428s; animation-duration: 13.48s; left: 56.7157%; top: -16.9706px; width: 12px; height: 12px; opacity: 0.6;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_0; animation-delay: 2.98666s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 13.409s; animation-duration: 13.48s; left: 86.167%; top: -16.9706px; width: 12px; height: 12px; opacity: 0.6;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_0; animation-delay: 1.53804s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 5.42841s; animation-duration: 13.48s; left: 38.3428%; top: -16.9706px; width: 12px; height: 12px; opacity: 0.6;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_0; animation-delay: 0.666218s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.63445s; animation-duration: 13.48s; left: 24.9125%; top: -16.9706px; width: 12px; height: 12px; opacity: 0.6;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_0; animation-delay: 1.26638s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 5.06936s; animation-duration: 13.48s; left: 19.4844%; top: -16.9706px; width: 12px; height: 12px; opacity: 0.6;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_0; animation-delay: 2.8722s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.9119s; animation-duration: 13.48s; left: 51.1142%; top: -16.9706px; width: 12px; height: 12px; opacity: 0.6;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_0; animation-delay: 3.58941s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.93569s; animation-duration: 13.48s; left: 32.1622%; top: -16.9706px; width: 12px; height: 12px; opacity: 0.6;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_0; animation-delay: 3.71174s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.901525s; animation-duration: 13.48s; left: 21.7787%; top: -16.9706px; width: 12px; height: 12px; opacity: 0.6;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_0; animation-delay: 2.21307s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 8.76829s; animation-duration: 13.062s; left: 16.9872%; top: -19.799px; width: 14px; height: 14px; opacity: 0.618605;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_1; animation-delay: 3.06384s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 5.29284s; animation-duration: 13.062s; left: 23.0081%; top: -19.799px; width: 14px; height: 14px; opacity: 0.618605;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_1; animation-delay: 0.323013s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.14821s; animation-duration: 13.062s; left: 6.04656%; top: -19.799px; width: 14px; height: 14px; opacity: 0.618605;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_1; animation-delay: 3.20149s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.73695s; animation-duration: 13.062s; left: 57.4741%; top: -19.799px; width: 14px; height: 14px; opacity: 0.618605;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_1; animation-delay: 1.64996s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.74226s; animation-duration: 13.062s; left: 54.1927%; top: -19.799px; width: 14px; height: 14px; opacity: 0.618605;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_1; animation-delay: 2.41657s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 6.49428s; animation-duration: 13.062s; left: 55.026%; top: -19.799px; width: 14px; height: 14px; opacity: 0.618605;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_1; animation-delay: 1.36496s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 12.5157s; animation-duration: 13.062s; left: 64.3605%; top: -19.799px; width: 14px; height: 14px; opacity: 0.618605;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_1; animation-delay: 1.16404s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.832291s; animation-duration: 12.644s; left: 1.84415%; top: -22.6274px; width: 16px; height: 16px; opacity: 0.637209;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_2; animation-delay: 0.59623s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 8.94628s; animation-duration: 12.644s; left: 59.3468%; top: -22.6274px; width: 16px; height: 16px; opacity: 0.637209;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_2; animation-delay: 1.78045s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 8.46917s; animation-duration: 12.644s; left: 26.3063%; top: -22.6274px; width: 16px; height: 16px; opacity: 0.637209;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_2; animation-delay: 3.04547s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.6451s; animation-duration: 12.644s; left: 1.03383%; top: -22.6274px; width: 16px; height: 16px; opacity: 0.637209;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_2; animation-delay: 1.43858s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 6.55808s; animation-duration: 12.226s; left: 16.163%; top: -25.4558px; width: 18px; height: 18px; opacity: 0.655814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_3; animation-delay: 1.79651s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.55789s; animation-duration: 12.226s; left: 69.5073%; top: -25.4558px; width: 18px; height: 18px; opacity: 0.655814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_3; animation-delay: 2.61707s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.339s; animation-duration: 12.226s; left: 25.8319%; top: -25.4558px; width: 18px; height: 18px; opacity: 0.655814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_3; animation-delay: 3.85124s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.836377s; animation-duration: 12.226s; left: 94.5838%; top: -25.4558px; width: 18px; height: 18px; opacity: 0.655814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_3; animation-delay: 3.59206s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 3.87439s; animation-duration: 12.226s; left: 25.6521%; top: -25.4558px; width: 18px; height: 18px; opacity: 0.655814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_3; animation-delay: 1.39058s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.51657s; animation-duration: 12.226s; left: 39.0204%; top: -25.4558px; width: 18px; height: 18px; opacity: 0.655814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_3; animation-delay: 3.80244s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.87373s; animation-duration: 11.8081s; left: 88.4845%; top: -28.2843px; width: 20px; height: 20px; opacity: 0.674419;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_4; animation-delay: 1.45986s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 3.36601s; animation-duration: 11.8081s; left: 22.76%; top: -28.2843px; width: 20px; height: 20px; opacity: 0.674419;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_4; animation-delay: 0.410575s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 3.95369s; animation-duration: 11.8081s; left: 19.4945%; top: -28.2843px; width: 20px; height: 20px; opacity: 0.674419;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_4; animation-delay: 1.87681s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.28919s; animation-duration: 11.8081s; left: 52.3738%; top: -28.2843px; width: 20px; height: 20px; opacity: 0.674419;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_4; animation-delay: 1.70937s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.0249s; animation-duration: 11.8081s; left: 55.5591%; top: -28.2843px; width: 20px; height: 20px; opacity: 0.674419;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_4; animation-delay: 2.82981s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.29165s; animation-duration: 11.8081s; left: 88.9594%; top: -28.2843px; width: 20px; height: 20px; opacity: 0.674419;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_4; animation-delay: 0.429633s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.8065s; animation-duration: 11.8081s; left: 94.9582%; top: -28.2843px; width: 20px; height: 20px; opacity: 0.674419;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_4; animation-delay: 3.85283s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.55611s; animation-duration: 11.3901s; left: 96.5949%; top: -31.1127px; width: 22px; height: 22px; opacity: 0.693023;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_5; animation-delay: 2.65526s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 12.8256s; animation-duration: 11.3901s; left: 74.2787%; top: -31.1127px; width: 22px; height: 22px; opacity: 0.693023;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_5; animation-delay: 1.88676s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 5.19238s; animation-duration: 11.3901s; left: 86.1924%; top: -31.1127px; width: 22px; height: 22px; opacity: 0.693023;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_5; animation-delay: 2.97518s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 3.27158s; animation-duration: 11.3901s; left: 20.0585%; top: -31.1127px; width: 22px; height: 22px; opacity: 0.693023;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_5; animation-delay: 2.25906s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.64433s; animation-duration: 11.3901s; left: 85.7024%; top: -31.1127px; width: 22px; height: 22px; opacity: 0.693023;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_5; animation-delay: 0.812853s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.85827s; animation-duration: 11.3901s; left: 81.4334%; top: -31.1127px; width: 22px; height: 22px; opacity: 0.693023;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_5; animation-delay: 0.543479s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.29516s; animation-duration: 11.3901s; left: 46.9926%; top: -31.1127px; width: 22px; height: 22px; opacity: 0.693023;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_5; animation-delay: 1.47216s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 5.00719s; animation-duration: 10.9721s; left: 9.92129%; top: -33.9411px; width: 24px; height: 24px; opacity: 0.711628;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_6; animation-delay: 2.80282s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 6.98382s; animation-duration: 10.9721s; left: 44.6086%; top: -33.9411px; width: 24px; height: 24px; opacity: 0.711628;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_6; animation-delay: 2.10138s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 5.1375s; animation-duration: 10.9721s; left: 41.9018%; top: -33.9411px; width: 24px; height: 24px; opacity: 0.711628;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_6; animation-delay: 3.65833s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 8.75653s; animation-duration: 10.9721s; left: 31.2757%; top: -33.9411px; width: 24px; height: 24px; opacity: 0.711628;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_6; animation-delay: 0.284193s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.1939s; animation-duration: 10.9721s; left: 49.8509%; top: -33.9411px; width: 24px; height: 24px; opacity: 0.711628;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_6; animation-delay: 3.84457s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.19772s; animation-duration: 10.9721s; left: 53.3387%; top: -33.9411px; width: 24px; height: 24px; opacity: 0.711628;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_6; animation-delay: 2.44903s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.46438s; animation-duration: 10.3451s; left: 74.0308%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 2.07684s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 3.62043s; animation-duration: 10.3451s; left: 29.5473%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 3.27655s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.81949s; animation-duration: 10.3451s; left: 28.4588%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 3.44571s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.479972s; animation-duration: 10.3451s; left: 20.3646%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 3.75544s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.68838s; animation-duration: 10.3451s; left: 4.05694%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 3.59584s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.36411s; animation-duration: 10.3451s; left: 57.4172%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 0.796581s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.2694s; animation-duration: 10.3451s; left: 47.0277%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 2.62501s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 6.51012s; animation-duration: 10.3451s; left: 34.7863%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 1.45896s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.04079s; animation-duration: 10.3451s; left: 95.7472%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 0.276875s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.3992s; animation-duration: 10.3451s; left: 67.8%; top: -38.1838px; width: 27px; height: 27px; opacity: 0.739535;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_7; animation-delay: 3.40974s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.9758s; animation-duration: 9.92713s; left: 47.3457%; top: -41.0122px; width: 29px; height: 29px; opacity: 0.75814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_8; animation-delay: 1.8043s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 8.43572s; animation-duration: 9.92713s; left: 32.9976%; top: -41.0122px; width: 29px; height: 29px; opacity: 0.75814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_8; animation-delay: 1.65929s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.01156s; animation-duration: 9.92713s; left: 62.6474%; top: -41.0122px; width: 29px; height: 29px; opacity: 0.75814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_8; animation-delay: 3.842s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.577669s; animation-duration: 9.92713s; left: 95.3249%; top: -41.0122px; width: 29px; height: 29px; opacity: 0.75814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_8; animation-delay: 2.84509s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.658792s; animation-duration: 9.92713s; left: 22.45%; top: -41.0122px; width: 29px; height: 29px; opacity: 0.75814;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_8; animation-delay: 2.68975s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.75763s; animation-duration: 9.50915s; left: 2.94748%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 2.52935s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.22046s; animation-duration: 9.50915s; left: 23.1056%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 3.62874s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.61196s; animation-duration: 9.50915s; left: 92.0758%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 0.445347s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.654s; animation-duration: 9.50915s; left: 88.0303%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 2.79503s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 12.1015s; animation-duration: 9.50915s; left: 77.4864%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 0.996947s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.79202s; animation-duration: 9.50915s; left: 68.3316%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 2.46587s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.76189s; animation-duration: 9.50915s; left: 29.8427%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 3.55311s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.59619s; animation-duration: 9.50915s; left: 81.8908%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 2.08377s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.8797s; animation-duration: 9.50915s; left: 27.1175%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 3.75567s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.97712s; animation-duration: 9.50915s; left: 75.539%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 2.43479s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.79817s; animation-duration: 9.50915s; left: 10.9456%; top: -43.8406px; width: 31px; height: 31px; opacity: 0.776744;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_9; animation-delay: 3.57529s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.37663s; animation-duration: 9.09116s; left: 92.2433%; top: -46.6691px; width: 33px; height: 33px; opacity: 0.795349;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_10; animation-delay: 2.06717s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 12.658s; animation-duration: 9.09116s; left: 17.5588%; top: -46.6691px; width: 33px; height: 33px; opacity: 0.795349;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_10; animation-delay: 3.31299s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.53005s; animation-duration: 9.09116s; left: 35.4919%; top: -46.6691px; width: 33px; height: 33px; opacity: 0.795349;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_10; animation-delay: 3.03774s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.8418s; animation-duration: 9.09116s; left: 96.6724%; top: -46.6691px; width: 33px; height: 33px; opacity: 0.795349;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_10; animation-delay: 0.749525s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 12.9191s; animation-duration: 8.67318s; left: 98.0462%; top: -49.4975px; width: 35px; height: 35px; opacity: 0.813953;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_11; animation-delay: 3.17455s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.48729s; animation-duration: 8.67318s; left: 57.1941%; top: -49.4975px; width: 35px; height: 35px; opacity: 0.813953;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_11; animation-delay: 3.92626s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 12.8236s; animation-duration: 8.67318s; left: 30.4891%; top: -49.4975px; width: 35px; height: 35px; opacity: 0.813953;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_11; animation-delay: 3.0406s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.4144s; animation-duration: 8.67318s; left: 77.8058%; top: -49.4975px; width: 35px; height: 35px; opacity: 0.813953;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_11; animation-delay: 2.00017s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 12.8007s; animation-duration: 8.67318s; left: 95.7995%; top: -49.4975px; width: 35px; height: 35px; opacity: 0.813953;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_11; animation-delay: 3.7737s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.9198s; animation-duration: 8.67318s; left: 70.1889%; top: -49.4975px; width: 35px; height: 35px; opacity: 0.813953;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_11; animation-delay: 3.35014s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.4083s; animation-duration: 8.67318s; left: 73.1167%; top: -49.4975px; width: 35px; height: 35px; opacity: 0.813953;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_11; animation-delay: 3.63225s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.10705s; animation-duration: 8.67318s; left: 50.4893%; top: -49.4975px; width: 35px; height: 35px; opacity: 0.813953;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_11; animation-delay: 3.47513s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.6859s; animation-duration: 8.67318s; left: 74.5752%; top: -49.4975px; width: 35px; height: 35px; opacity: 0.813953;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_11; animation-delay: 1.3479s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.75603s; animation-duration: 8.25519s; left: 97.5397%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 0.0247066s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 3.80685s; animation-duration: 8.25519s; left: 92.8171%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 1.30167s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 6.35283s; animation-duration: 8.25519s; left: 59.5217%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 2.22572s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 5.47198s; animation-duration: 8.25519s; left: 78.055%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 1.45473s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.09634s; animation-duration: 8.25519s; left: 55.6258%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 1.70341s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.30459s; animation-duration: 8.25519s; left: 93.0823%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 1.47583s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.366119s; animation-duration: 8.25519s; left: 90.59%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 2.68471s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.905467s; animation-duration: 8.25519s; left: 32.4498%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 1.70474s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.366312s; animation-duration: 8.25519s; left: 83.1158%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 0.623809s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 8.87124s; animation-duration: 8.25519s; left: 33.2392%; top: -52.3259px; width: 37px; height: 37px; opacity: 0.832558;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_12; animation-delay: 1.5307s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 8.29385s; animation-duration: 7.83721s; left: 26.9054%; top: -55.1543px; width: 39px; height: 39px; opacity: 0.851163;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_13; animation-delay: 0.220751s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.0566s; animation-duration: 7.83721s; left: 30.336%; top: -55.1543px; width: 39px; height: 39px; opacity: 0.851163;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_13; animation-delay: 1.76152s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.1241s; animation-duration: 7.83721s; left: 19.5788%; top: -55.1543px; width: 39px; height: 39px; opacity: 0.851163;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_13; animation-delay: 3.67682s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.507429s; animation-duration: 7.83721s; left: 47.7968%; top: -55.1543px; width: 39px; height: 39px; opacity: 0.851163;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_13; animation-delay: 3.8699s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 8.69044s; animation-duration: 7.83721s; left: 25.8093%; top: -55.1543px; width: 39px; height: 39px; opacity: 0.851163;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_13; animation-delay: 2.12567s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 8.55395s; animation-duration: 7.83721s; left: 35.0802%; top: -55.1543px; width: 39px; height: 39px; opacity: 0.851163;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_13; animation-delay: 2.25849s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.41115s; animation-duration: 7.83721s; left: 20.193%; top: -55.1543px; width: 39px; height: 39px; opacity: 0.851163;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_13; animation-delay: 3.14572s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 6.79228s; animation-duration: 7.21023s; left: 21.9474%; top: -59.397px; width: 42px; height: 42px; opacity: 0.87907;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_14; animation-delay: 1.67339s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.48862s; animation-duration: 7.21023s; left: 73.6259%; top: -59.397px; width: 42px; height: 42px; opacity: 0.87907;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_14; animation-delay: 1.37572s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.2229s; animation-duration: 7.21023s; left: 27.248%; top: -59.397px; width: 42px; height: 42px; opacity: 0.87907;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_14; animation-delay: 0.585834s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.58049s; animation-duration: 7.21023s; left: 35.5429%; top: -59.397px; width: 42px; height: 42px; opacity: 0.87907;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_14; animation-delay: 1.5567s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 4.16821s; animation-duration: 7.21023s; left: 79.2067%; top: -59.397px; width: 42px; height: 42px; opacity: 0.87907;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_14; animation-delay: 1.46943s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 12.1386s; animation-duration: 7.21023s; left: 59.8641%; top: -59.397px; width: 42px; height: 42px; opacity: 0.87907;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_14; animation-delay: 1.17693s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.13265s; animation-duration: 6.79225s; left: 59.0122%; top: -62.2254px; width: 44px; height: 44px; opacity: 0.897674;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_15; animation-delay: 3.81459s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 12.5875s; animation-duration: 6.79225s; left: 50.0333%; top: -62.2254px; width: 44px; height: 44px; opacity: 0.897674;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_15; animation-delay: 1.30966s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 13.2405s; animation-duration: 6.79225s; left: 40.4501%; top: -62.2254px; width: 44px; height: 44px; opacity: 0.897674;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_15; animation-delay: 2.35722s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 6.95322s; animation-duration: 6.79225s; left: 6.12924%; top: -62.2254px; width: 44px; height: 44px; opacity: 0.897674;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_15; animation-delay: 3.3306s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.35231s; animation-duration: 6.79225s; left: 12.9792%; top: -62.2254px; width: 44px; height: 44px; opacity: 0.897674;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_15; animation-delay: 2.54342s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.071s; animation-duration: 6.79225s; left: 61.5613%; top: -62.2254px; width: 44px; height: 44px; opacity: 0.897674;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_15; animation-delay: 0.370164s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 10.5935s; animation-duration: 6.37426s; left: 17.5474%; top: -65.0538px; width: 46px; height: 46px; opacity: 0.916279;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_16; animation-delay: 2.62393s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 5.21671s; animation-duration: 6.37426s; left: 62.6439%; top: -65.0538px; width: 46px; height: 46px; opacity: 0.916279;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_16; animation-delay: 1.95037s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 0.663425s; animation-duration: 5.95628s; left: 93.3657%; top: -67.8823px; width: 48px; height: 48px; opacity: 0.934884;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_17; animation-delay: 0.191512s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 6.91843s; animation-duration: 5.95628s; left: 21.3573%; top: -67.8823px; width: 48px; height: 48px; opacity: 0.934884;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_17; animation-delay: 2.39451s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.94928s; animation-duration: 5.95628s; left: 29.3715%; top: -67.8823px; width: 48px; height: 48px; opacity: 0.934884;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_17; animation-delay: 1.54778s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 3.3383s; animation-duration: 5.5383s; left: 95.5549%; top: -70.7107px; width: 50px; height: 50px; opacity: 0.953488;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_18; animation-delay: 0.26712s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 13.2504s; animation-duration: 5.5383s; left: 68.8391%; top: -70.7107px; width: 50px; height: 50px; opacity: 0.953488;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_18; animation-delay: 2.144s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 1.52147s; animation-duration: 5.5383s; left: 46.1636%; top: -70.7107px; width: 50px; height: 50px; opacity: 0.953488;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_18; animation-delay: 0.954447s;" class="snowflake__inner snowflake__inner_type_1 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.85768s; animation-duration: 5.5383s; left: 76.8356%; top: -70.7107px; width: 50px; height: 50px; opacity: 0.953488;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_18; animation-delay: 1.18337s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.54613s; animation-duration: 5.12031s; left: 71.7232%; top: -73.5391px; width: 52px; height: 52px; opacity: 0.972093;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_19; animation-delay: 2.44947s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.92102s; animation-duration: 5.12031s; left: 31.9556%; top: -73.5391px; width: 52px; height: 52px; opacity: 0.972093;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_19; animation-delay: 2.02579s;" class="snowflake__inner snowflake__inner_type_4 snowflake__inner_wind snowflake__inner_rotation"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 7.47948s; animation-duration: 5.12031s; left: 0.357939%; top: -73.5391px; width: 52px; height: 52px; opacity: 0.972093;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_19; animation-delay: 0.384626s;" class="snowflake__inner snowflake__inner_type_3 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 11.4461s; animation-duration: 5.12031s; left: 38.8094%; top: -73.5391px; width: 52px; height: 52px; opacity: 0.972093;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_19; animation-delay: 3.36515s;" class="snowflake__inner snowflake__inner_type_2 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 9.56245s; animation-duration: 5.12031s; left: 20.2075%; top: -73.5391px; width: 52px; height: 52px; opacity: 0.972093;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_19; animation-delay: 3.70416s;" class="snowflake__inner snowflake__inner_type_0 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div><div style="animation-name: snowflake_gid_1_y; animation-delay: 2.62365s; animation-duration: 5.12031s; left: 20.0472%; top: -73.5391px; width: 52px; height: 52px; opacity: 0.972093;" class="snowflake"><div style="animation-name: snowflake_gid_1_x_19; animation-delay: 3.55993s;" class="snowflake__inner snowflake__inner_type_5 snowflake__inner_wind snowflake__inner_rotation_reverse"></div></div></div><style>.snowflake{-webkit-animation:snowflake_unknown 10s linear infinite;animation:snowflake_unknown 10s linear infinite;pointer-events:none;position:absolute;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;will-change:transform}.snowflake__inner,.snowflake__inner:before{bottom:0;left:0;position:absolute;right:0;top:0}.snowflake__inner:before{background-size:100% 100%;content:""}.snowflake__inner_wind{-webkit-animation:snowflake_unknown 2s ease-in-out infinite alternate;animation:snowflake_unknown 2s ease-in-out infinite alternate}.snowflake__inner_rotation:before{-webkit-animation:snowflake_rotation 10s linear infinite;animation:snowflake_rotation 10s linear infinite}.snowflake__inner_rotation_reverse:before{-webkit-animation:snowflake_rotation_reverse 10s linear infinite;animation:snowflake_rotation_reverse 10s linear infinite}@-webkit-keyframes snowflake_rotation{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@keyframes snowflake_rotation{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@-webkit-keyframes snowflake_rotation_reverse{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(-1turn);transform:rotate(-1turn)}}@keyframes snowflake_rotation_reverse{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(-1turn);transform:rotate(-1turn)}}.snowflakes{pointer-events:none}.snowflakes_paused .snowflake,.snowflakes_paused .snowflake__inner,.snowflakes_paused .snowflake__inner:before{-webkit-animation-play-state:paused;animation-play-state:paused}.snowflakes_hidden{visibility:hidden}.snowflakes_body{height:1px;left:0;position:fixed;top:0;width:100%}</style><style>.snowflakes_gid_1 .snowflake__inner_type_0:before{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36.283' height='36.283'%3E%3Cpath d='M35.531 17.391h-3.09l.845-1.464a.748.748 0 1 0-1.297-.75l-1.276 2.214H28.61l2.515-4.354a.751.751 0 0 0-.272-1.024.75.75 0 0 0-1.024.274l-2.948 5.104h-2.023a6.751 6.751 0 0 0-2.713-4.684l1.019-1.76 5.896-.002a.75.75 0 0 0 0-1.5l-5.029.002 1.051-1.82 2.557.002a.75.75 0 0 0 0-1.5l-1.689-.002 1.545-2.676a.75.75 0 1 0-1.302-.75l-1.547 2.676-.844-1.463a.749.749 0 1 0-1.297.75l1.278 2.213-1.051 1.818-2.514-4.354a.75.75 0 0 0-1.298.75l2.946 5.104-1.016 1.758a6.692 6.692 0 0 0-2.706-.57 6.74 6.74 0 0 0-2.707.568l-1.013-1.754 2.946-5.105a.75.75 0 0 0-1.298-.75L13.56 8.697l-1.05-1.818 1.278-2.217a.749.749 0 0 0-1.298-.75l-.845 1.465-1.551-2.678a.75.75 0 0 0-1.024-.273.748.748 0 0 0-.274 1.023l1.545 2.678H8.652a.75.75 0 0 0 0 1.5h2.556l1.05 1.818H7.231a.75.75 0 0 0 0 1.5h5.894l1.017 1.762a6.755 6.755 0 0 0-2.712 4.684H9.406l-2.95-5.104a.75.75 0 1 0-1.299.75l2.516 4.354H5.569l-1.277-2.213a.75.75 0 0 0-1.298.75l.845 1.463H.75a.75.75 0 0 0 0 1.5h3.09l-.845 1.465a.747.747 0 0 0 .275 1.022.75.75 0 0 0 .374.103.75.75 0 0 0 .65-.375l1.277-2.215h2.103l-2.516 4.354a.75.75 0 0 0 1.299.75l2.949-5.104h2.024a6.761 6.761 0 0 0 2.712 4.685l-1.017 1.762H7.232a.75.75 0 0 0 0 1.5h5.026l-1.05 1.818H8.651a.75.75 0 0 0 0 1.5h1.69l-1.545 2.676a.75.75 0 0 0 1.299.75l1.546-2.676.846 1.465a.755.755 0 0 0 .65.375.737.737 0 0 0 .375-.103.747.747 0 0 0 .274-1.022l-1.279-2.215 1.05-1.82 2.515 4.354a.75.75 0 0 0 1.299-.75l-2.947-5.104 1.013-1.756a6.72 6.72 0 0 0 5.415 0l1.014 1.756-2.947 5.104a.75.75 0 0 0 1.298.75l2.515-4.354 1.053 1.82-1.277 2.213a.75.75 0 0 0 1.298.75l.844-1.463 1.545 2.678c.141.24.393.375.65.375a.75.75 0 0 0 .649-1.125l-1.548-2.678h1.689a.75.75 0 0 0 0-1.5h-2.557l-1.051-1.82 5.029.002a.75.75 0 0 0 0-1.5l-5.896-.002-1.019-1.76a6.75 6.75 0 0 0 2.711-4.685h2.023l2.947 5.104a.753.753 0 0 0 1.025.273.749.749 0 0 0 .272-1.023l-2.515-4.354h2.104l1.279 2.215a.75.75 0 0 0 .649.375c.127 0 .256-.03.375-.103a.748.748 0 0 0 .273-1.022l-.848-1.465h3.092a.75.75 0 0 0 .003-1.5zm-12.136.75c0 .257-.041.502-.076.75a5.223 5.223 0 0 1-1.943 3.358 5.242 5.242 0 0 1-1.291.766 5.224 5.224 0 0 1-1.949.384 5.157 5.157 0 0 1-3.239-1.15 5.22 5.22 0 0 1-1.943-3.358c-.036-.247-.076-.493-.076-.75s.04-.503.076-.75a5.22 5.22 0 0 1 1.944-3.359c.393-.312.82-.576 1.291-.765a5.219 5.219 0 0 1 1.948-.384c.69 0 1.344.142 1.948.384.471.188.898.454 1.291.765a5.222 5.222 0 0 1 1.943 3.359c.035.247.076.493.076.75z' fill='%23A2A2A2'/%3E%3C/svg%3E")}.snowflakes_gid_1 .snowflake__inner_type_1:before{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32.813' height='32.813'%3E%3Cpath d='M29.106 24.424a.781.781 0 0 1-.781.781h-3.119v3.119a.782.782 0 0 1-1.562 0v-4.682h4.682c.43.001.78.351.78.782zM4.673 9.352h4.682V4.671a.781.781 0 0 0-1.563 0V7.79H4.673a.781.781 0 0 0 0 1.562zM3.708 24.24c0 .431.35.781.781.781H7.61v3.12a.78.78 0 1 0 1.562 0v-4.683H4.489a.782.782 0 0 0-.781.782zM28.923 8.39a.78.78 0 0 0-.781-.781h-3.121V4.488a.781.781 0 0 0-1.562 0v4.684h4.684a.783.783 0 0 0 .78-.782zm3.889 8.017c0 .431-.35.781-.781.781h-3.426l1.876 1.873a.784.784 0 0 1 0 1.107.791.791 0 0 1-.554.228.773.773 0 0 1-.55-.228l-2.979-2.98h-2.995a6.995 6.995 0 0 1-1.728 3.875h5.609a.781.781 0 0 1 0 1.562h-4.666v4.667a.782.782 0 0 1-1.562 0v-5.61a7 7 0 0 1-3.866 1.719v2.995l2.978 2.98c.306.305.306.8 0 1.104a.78.78 0 0 1-1.104 0l-1.874-1.876v3.427a.781.781 0 0 1-1.562 0v-3.427l-1.875 1.876a.78.78 0 1 1-1.105-1.104l2.979-2.98v-2.995a7.016 7.016 0 0 1-3.865-1.717v5.608a.781.781 0 0 1-1.562 0v-4.667H5.535a.781.781 0 0 1 0-1.562h5.607a7.022 7.022 0 0 1-1.728-3.875H6.417l-2.979 2.979a.784.784 0 0 1-1.104 0 .781.781 0 0 1 0-1.106l1.874-1.873H.782a.78.78 0 1 1-.001-1.563h3.426L2.333 13.75a.783.783 0 0 1 1.105-1.106l2.979 2.979h2.995a6.996 6.996 0 0 1 1.72-3.866H5.533a.781.781 0 0 1 0-1.562h4.666V5.528a.781.781 0 0 1 1.562 0v5.599a6.995 6.995 0 0 1 3.865-1.717V6.415l-2.978-2.979a.782.782 0 0 1 1.105-1.105l1.874 1.875V.781a.78.78 0 1 1 1.562 0v3.426l1.875-1.875a.777.777 0 0 1 1.104 0 .78.78 0 0 1 0 1.105l-2.978 2.98v2.996a7.021 7.021 0 0 1 3.866 1.718V5.532a.78.78 0 1 1 1.562 0v4.666h4.666a.78.78 0 1 1 0 1.562h-5.599a7 7 0 0 1 1.718 3.866h2.995l2.979-2.979a.783.783 0 0 1 1.106 1.106l-1.876 1.874h3.427a.777.777 0 0 1 .778.78zm-11.006-.782a5.457 5.457 0 0 0-4.618-4.617c-.257-.037-.514-.079-.781-.079-.268 0-.524.042-.781.079a5.458 5.458 0 0 0-4.618 4.617c-.038.257-.079.514-.079.781s.041.522.079.781a5.455 5.455 0 0 0 4.618 4.616c.257.036.514.079.781.079s.524-.043.781-.079a5.457 5.457 0 0 0 4.618-4.616c.037-.259.079-.515.079-.781s-.043-.524-.079-.781z' fill='%23A2A2A2'/%3E%3C/svg%3E")}.snowflakes_gid_1 .snowflake__inner_type_2:before{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='35.79' height='35.79'%3E%3Cpath d='M7.161 22.223l.026-.047.865.5-.026.047a.503.503 0 0 1-.434.25c-.019 0-.034-.013-.053-.016l-.355-.205a.493.493 0 0 1-.023-.529zM9.969 8.988l2.785.001 1.393-2.414a.502.502 0 0 0-.869-.499l-1.103 1.913-2.208-.001a.5.5 0 1 0 .002 1zm15.854 17.813h-2.785l-1.393 2.411a.499.499 0 0 0 .436.75c.172 0 .34-.09.434-.25l1.104-1.911h2.207c.274 0 .5-.224.5-.5a.505.505 0 0 0-.503-.5zM23.038 8.99h2.785a.5.5 0 0 0 0-1h-2.207l-1.105-1.913a.5.5 0 0 0-.868.5l1.395 2.413zM12.754 26.801H9.967a.5.5 0 0 0 0 1h2.209l1.105 1.912a.496.496 0 0 0 .682.184.5.5 0 0 0 .184-.684l-1.393-2.412zm-7.218-6.309a.502.502 0 0 0 .685-.184l1.391-2.413-1.394-2.413a.5.5 0 0 0-.867.5l1.104 1.913-1.104 1.913a.5.5 0 0 0 .185.684zM30.254 15.3a.505.505 0 0 0-.685.183l-1.392 2.412 1.395 2.414a.501.501 0 0 0 .867-.5l-1.104-1.914 1.104-1.912a.5.5 0 0 0-.185-.683zm3.138 11.542a.501.501 0 0 1-.683.184l-.98-.565-2.137 1.231a.516.516 0 0 1-.5 0l-2.385-1.377a.502.502 0 0 1-.25-.433v-.854h-4.441l-2.225 3.852.736.428c.154.088.25.254.25.432l.001 2.755a.5.5 0 0 1-.25.433l-2.133 1.229v1.136c0 .274-.225.5-.5.5s-.5-.226-.5-.5v-1.136l-2.136-1.23a.5.5 0 0 1-.25-.433l.001-2.755c0-.178.096-.344.25-.432l.738-.427-2.224-3.849H9.332l.002.851a.505.505 0 0 1-.25.435l-2.387 1.377a.5.5 0 0 1-.5 0L4.06 26.46l-.982.567a.5.5 0 0 1-.5-.867l.982-.567.001-2.465c0-.179.097-.344.25-.434l2.388-1.377a.497.497 0 0 1 .5 0l.736.426 2.221-3.848-2.222-3.849-.737.426a.51.51 0 0 1-.5 0l-2.386-1.377a.5.5 0 0 1-.25-.434l.002-2.464-.983-.567a.501.501 0 0 1-.184-.683.502.502 0 0 1 .684-.183l.983.568 2.134-1.233a.5.5 0 0 1 .5 0l2.385 1.379c.156.089.25.255.25.433v.85h4.443l2.223-3.846-.74-.427a.501.501 0 0 1-.25-.434l.002-2.755c0-.178.096-.343.25-.433l2.135-1.233V.5a.5.5 0 0 1 1 0v1.135l2.134 1.231c.154.089.25.254.25.434l-.002 2.755a.503.503 0 0 1-.25.433l-.733.425 2.224 3.849h4.44l-.002-.851c0-.179.096-.344.25-.434l2.388-1.378a.502.502 0 0 1 .5 0l2.136 1.233.982-.568a.5.5 0 1 1 .5.866l-.983.568v2.464a.503.503 0 0 1-.25.433l-2.388 1.378a.5.5 0 0 1-.5 0l-.735-.426-2.222 3.849 2.223 3.849.734-.425a.506.506 0 0 1 .5 0l2.389 1.375c.154.09.25.255.25.435l-.002 2.462.982.568c.24.137.321.444.182.682zm-2.165-1.828l.001-1.597-1.888-1.087-.734.424-.348.201-.301.173-.5.289v2.179l1.885 1.088 1.386-.802.498-.286.001-.582zm-3.736-11.467l-.531-.307-2.283 1.318-2.443 3.337 2.442 3.337 2.283 1.316.531-.306-2.514-4.348 2.515-4.347zm-7.712 16.478l-.762-.438-.339-.194-.283-.166-.5-.289-.5.289-.279.162-.349.2-.757.437-.001 2.177 1.386.797.501.289.499-.287 1.386-.798-.002-2.179zM16.008 5.767l.736.425.371.214.279.16.5.288.5-.289.281-.163.367-.212.732-.424.002-2.178-1.381-.797-.502-.289-.498.287-1.385.8-.002 2.178zm6.52 14.227l-1.535-2.099 1.535-2.098.732-1-1.232.134-2.585.281-1.048-2.379-.5-1.133-.5 1.134-1.049 2.379-2.585-.281-1.232-.134.732 1 1.536 2.097-1.536 2.098-.732 1 1.232-.134 2.585-.281 1.049 2.379.5 1.134.5-1.134 1.048-2.379 2.585.281 1.232.134-.732-.999zm8.2-10.084l-1.386-.8-1.887 1.089v1.279l.002.32v.577l.5.289.28.163.367.213.732.424 1.888-1.089v-2.178l-.496-.287zM18.927 7.413l-.532.307v2.637l1.667 3.784 4.111-.447 2.283-1.317-.002-.613h-5.02l-2.507-4.351zm-9.594 4.348v.614l2.283 1.318 4.111.447 1.668-3.785V7.719l-.531-.306-2.509 4.347-5.022.001zm-2.15 1.279l.37-.213.279-.162.5-.289V10.2L6.446 9.11l-1.384.8-.499.289v.578l-.002 1.599 1.885 1.088.737-.424zm1.119 9.205l.53.306 2.281-1.316 2.443-3.339-2.442-3.337-2.281-1.317-.531.307 2.511 4.348-2.511 4.348zm-1.115-.069l-.026.047a.493.493 0 0 0 .023.529l-.734-.424-1.887 1.089-.001 1.599v.578l.5.288 1.386.8 1.887-1.088v-1.278l-.002-.321v-.577l-.5-.289-.293-.169c.02.002.035.017.055.017a.5.5 0 0 0 .433-.25l.026-.047-.867-.504zm9.679 6.202l.529-.306v-2.637l-1.668-3.785-4.111.447-2.283 1.316.002.611 5.021.002 2.51 4.352zm9.591-4.349v-.612L24.174 22.1l-4.111-.447-1.667 3.783v2.639l.531.307 2.512-4.352h5.018v-.001z' fill='%23A2A2A2'/%3E%3C/svg%3E")}.snowflakes_gid_1 .snowflake__inner_type_3:before{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32.815' height='32.815'%3E%3Cpath d='M4.581 23.55h4.681v4.681a.78.78 0 1 1-1.562 0v-3.118H4.581a.781.781 0 0 1 0-1.563zM29.016 8.481a.781.781 0 0 0-.781-.781h-3.119V4.582a.781.781 0 0 0-1.562 0v4.681h4.682c.429 0 .78-.35.78-.782zm-24.252.598l4.683-.001V4.395a.781.781 0 0 0-1.562 0v3.121l-3.121.001a.781.781 0 0 0 0 1.562zm23.655 14.287h-4.685l.002 4.684a.78.78 0 1 0 1.562 0l-.002-3.121h3.122a.781.781 0 0 0 .001-1.563zm4.394-6.96a.78.78 0 0 1-.781.781h-3.426l1.876 1.875a.782.782 0 0 1-1.104 1.105l-2.979-2.979h-1.986L17.19 24.41v1.987l2.977 2.979a.781.781 0 0 1-1.103 1.106l-1.874-1.875v3.426a.78.78 0 1 1-1.562 0v-3.426l-1.875 1.875a.782.782 0 0 1-1.105-1.105l2.978-2.979V24.41l-7.219-7.22H6.418l-2.98 2.98a.777.777 0 0 1-1.103 0 .781.781 0 0 1 0-1.106L4.21 17.19H.783a.78.78 0 1 1 0-1.562h3.426l-1.876-1.875a.782.782 0 1 1 1.106-1.105l2.979 2.979h1.989l7.219-7.218v-1.99L12.648 3.44a.782.782 0 1 1 1.106-1.105l1.874 1.874V.781a.782.782 0 0 1 1.563 0v3.426l1.875-1.875a.783.783 0 0 1 1.106 1.105l-2.979 2.979v1.99l7.216 7.218h1.992l2.979-2.979a.782.782 0 0 1 1.105 1.105l-1.876 1.874h3.427a.781.781 0 0 1 .777.782zm-10.613.782l.778-.78-.781-.782-5.009-5.008-.781-.781-.781.781-5.01 5.008-.781.781.781.781 5.01 5.011.782.781.78-.779 5.012-5.013zm5.863 4.646a.782.782 0 0 0-.781-.781h-6.229v6.228a.78.78 0 1 0 1.562 0v-4.665h4.666a.782.782 0 0 0 .782-.782zm-.001-10.855a.782.782 0 0 0-.781-.781h-4.664V5.532a.782.782 0 0 0-1.562 0v6.228h6.227a.78.78 0 0 0 .78-.781zm-23.318 0c0 .432.35.781.781.781h6.228V5.532a.781.781 0 0 0-1.562 0v4.666H5.525a.781.781 0 0 0-.781.781zm.002 10.855c0 .432.35.781.781.781h4.664v4.665a.78.78 0 1 0 1.562 0v-6.228H5.527a.783.783 0 0 0-.781.782z' fill='%23A2A2A2'/%3E%3C/svg%3E")}.snowflakes_gid_1 .snowflake__inner_type_4:before{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='37.794' height='37.794'%3E%3Cpath d='M30.638 17.313l-.914 1.584.915 1.585a.78.78 0 1 1-1.352.78l-1.366-2.366 1.366-2.365a.782.782 0 0 1 1.067-.286c.372.215.5.692.284 1.068zM11.65 11.08l2.733.002 1.367-2.367a.78.78 0 0 0-1.352-.781l-.915 1.585-1.831-.002h-.001a.78.78 0 0 0-.001 1.563zm14.491 15.633h-2.733l-1.365 2.365a.78.78 0 1 0 1.352.78l.914-1.584h1.831a.781.781 0 0 0 .001-1.561zm-4.1-17.998l1.367 2.367h2.733a.78.78 0 1 0 0-1.562h-1.833l-.915-1.585a.78.78 0 0 0-1.352.78zM15.75 29.08l-1.368-2.366h-2.733a.781.781 0 0 0 0 1.562h1.832l.917 1.585c.146.25.409.391.677.391a.779.779 0 0 0 .675-1.172zm-8.313-7.531a.78.78 0 0 0 1.067-.284L9.87 18.9l-1.367-2.368a.781.781 0 0 0-1.351.781l.916 1.587-.914 1.584a.776.776 0 0 0 .283 1.065zm27.827 6.798a.784.784 0 0 1-1.067.285l-.89-.515-2.096 1.209a.793.793 0 0 1-.391.105.762.762 0 0 1-.391-.105l-2.484-1.435a.78.78 0 0 1-.391-.676l-.002-2.417-2.408-1.392a7.714 7.714 0 0 1-5.467 3.168v2.773l2.093 1.208a.78.78 0 0 1 .391.676l.001 2.868c0 .28-.149.537-.392.676l-2.093 1.205v1.032a.781.781 0 0 1-1.562 0V35.98l-2.095-1.207a.78.78 0 0 1-.391-.676l.001-2.868c0-.28.15-.537.391-.676l2.094-1.206v-2.773a7.718 7.718 0 0 1-5.468-3.168l-2.408 1.392.002 2.415c0 .281-.15.539-.391.676l-2.487 1.437a.785.785 0 0 1-.782 0l-2.095-1.209-.893.518a.782.782 0 0 1-.782-1.354l.893-.517.001-2.414a.78.78 0 0 1 .391-.677l2.487-1.434a.774.774 0 0 1 .781 0l2.093 1.208 2.407-1.39a7.655 7.655 0 0 1 0-6.317l-2.406-1.39-2.096 1.209a.772.772 0 0 1-.782 0l-2.485-1.434a.786.786 0 0 1-.391-.676l.002-2.416-.894-.517a.78.78 0 0 1-.285-1.066.788.788 0 0 1 1.07-.283l.893.514 2.093-1.208a.774.774 0 0 1 .781 0L9.851 9.91c.24.14.391.398.391.675L10.24 13l2.408 1.392a7.712 7.712 0 0 1 5.468-3.167V8.45L16.02 7.242a.78.78 0 0 1-.391-.676l.002-2.87c0-.279.15-.538.391-.675l2.094-1.208V.781a.781.781 0 0 1 1.562 0v1.032l2.093 1.206a.785.785 0 0 1 .391.677l-.002 2.87c0 .28-.149.536-.391.674l-2.091 1.208v2.772a7.708 7.708 0 0 1 5.467 3.167l2.409-1.392-.002-2.416c0-.28.149-.539.391-.676l2.487-1.436c.24-.14.539-.14.781 0l2.095 1.208.894-.514a.78.78 0 1 1 .781 1.352l-.894.516v2.417c0 .279-.15.538-.391.675l-2.487 1.436a.785.785 0 0 1-.782 0l-2.092-1.209-2.408 1.39c.436.967.684 2.032.684 3.158a7.65 7.65 0 0 1-.684 3.158l2.408 1.391 2.091-1.206a.782.782 0 0 1 .78 0l2.488 1.432c.24.141.392.398.392.677l-.002 2.414.893.517a.783.783 0 0 1 .287 1.068zm-6.147-16.251l.001.9.78.453.921.531 1.706-.982v-1.965l-.78-.451-.923-.533-1.707.983.002 1.064zm-20.443-.002l.002-1.063-1.706-.985-.922.535-.778.451-.001.902-.001 1.063 1.703.982.924-.533.779-.451v-.901zm0 13.604l-.001-.899-.781-.451-.919-.533-1.706.982-.001 1.064v.901l.781.451.923.533 1.707-.982-.003-1.066zm15.109-3.076c.315-.413.586-.864.789-1.351a6.121 6.121 0 0 0 0-4.748 6.175 6.175 0 0 0-.789-1.35 6.158 6.158 0 0 0-4.106-2.375 6.48 6.48 0 0 0-.781-.056c-.266 0-.525.022-.781.056a6.149 6.149 0 0 0-4.106 2.375 6.128 6.128 0 0 0-.789 1.35 6.104 6.104 0 0 0-.479 2.374 6.1 6.1 0 0 0 1.268 3.725 6.15 6.15 0 0 0 4.106 2.374c.256.031.516.056.781.056s.525-.022.781-.056a6.142 6.142 0 0 0 4.106-2.374zM17.19 6.113l.924.531.781.452.781-.452.919-.531.002-1.968-.921-.531-.784-.452-.779.451-.922.532-.001 1.968zm3.408 25.57l-.921-.532-.781-.452-.781.452-.922.532-.001 1.966.923.531.782.451.78-.449.922-.533-.001-1.966zm11.925-5.819l.001-1.063-1.707-.981-.919.529-.782.451v.901l.001 1.065 1.702.981.924-.533.778-.449.002-.901z' fill='%23A2A2A2'/%3E%3C/svg%3E")}.snowflakes_gid_1 .snowflake__inner_type_5:before{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='31.25' height='31.25'%3E%3Cpath d='M20.581 1.176l-3.914 3.915V0h1.041v2.576L19.845.439l.736.737zm-1.615 9.069l.351.217 6.623-6.625-.736-.737-6.048 6.051a7.141 7.141 0 0 0-1.449-.6v-.082l5.082-5.082-.737-.737-5.387 5.388v1.33l.402.093a6.213 6.213 0 0 1 1.899.784zm2.041 2.043c.368.585.63 1.224.786 1.893l.094.403h1.028l5.171-5.173-.736-.737-4.699 4.701a7.523 7.523 0 0 0-.549-1.28l6.048-6.05-.737-.735-6.622 6.625.216.353zm7.368 1.254l1.921-1.923-.736-.735-3.699 3.7h5.39v-1.042h-2.876zm1.185 6.826l.736-.736-1.923-1.923h2.877v-1.042h-5.389l3.699 3.701zm-6.915-2.498l4.705 4.707.736-.736-5.171-5.174h-1.03l-.096.4a6.24 6.24 0 0 1-.795 1.883l-.22.353 6.639 6.641.736-.736-6.061-6.062c.227-.414.414-.84.557-1.276zm-3.7 3.125a6.241 6.241 0 0 1-1.88.794l-.399.096v1.33l5.387 5.387.736-.736-5.082-5.082v-.089a7.322 7.322 0 0 0 1.434-.605l6.061 6.062.736-.736-6.641-6.641-.352.22zM16.667 31.25h1.041v-2.576l2.137 2.137.736-.737-3.914-3.914v5.09zm-5.26-.439l2.134-2.137v2.576h1.042v-5.093l-3.913 3.916.737.738zm.897-9.816l-.352-.222-6.642 6.641.736.736 6.062-6.062c.456.254.937.456 1.433.605v.089l-5.08 5.082.736.736 5.387-5.387v-1.33l-.4-.096a6.175 6.175 0 0 1-1.88-.792zm-2.046-2.047a6.315 6.315 0 0 1-.798-1.883l-.096-.4H8.335l-5.172 5.174.737.736 4.706-4.71c.145.441.329.865.556 1.276L3.1 25.202l.736.736 6.643-6.643-.221-.347zM0 16.667v1.042h2.876L.954 19.632l.736.736 3.698-3.701H0zm1.69-5.783l-.736.735 1.921 1.923H0v1.042h5.39l-3.7-3.7zm6.916 2.498L3.9 8.674l-.736.737 5.172 5.173h1.029l.096-.4a6.15 6.15 0 0 1 .798-1.881l.222-.352L3.837 5.31l-.736.736 6.062 6.06a7.268 7.268 0 0 0-.557 1.276zm-.145-9.996l5.08 5.082v.088c-.497.15-.977.352-1.433.606L6.047 3.101l-.736.737 6.643 6.643.352-.222a6.223 6.223 0 0 1 1.88-.797l.4-.095v-1.33L9.2 2.649l-.739.737zm5.081-.81L11.408.439l-.736.737 3.913 3.917V0h-1.042v2.576zm-1.757 14.831a4.2 4.2 0 0 0 2.06 2.058l.739.338v-3.136h-3.138l.339.74zm0-3.562l-.337.738h3.135v-3.136l-.739.338a4.223 4.223 0 0 0-2.059 2.06zm7.679 3.561l.338-.739h-3.135v3.136l.738-.338a4.204 4.204 0 0 0 2.059-2.059zm0-3.561a4.198 4.198 0 0 0-2.059-2.06l-.738-.34v3.138h3.135l-.338-.738z' fill='%23A2A2A2'/%3E%3C/svg%3E")}</style><style>@-webkit-keyframes snowflake_gid_1_y{from{-webkit-transform:translateY(0px)}to{-webkit-transform:translateY(751.7817459305202px);}}
+@keyframes snowflake_gid_1_y{from{transform:translateY(0px)}to{transform:translateY(751.7817459305202px)}}@-webkit-keyframes snowflake_gid_1_x_0{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(12px);}}
+@keyframes snowflake_gid_1_x_0{from{transform:translateX(0px)}to{transform:translateX(12px)}}@-webkit-keyframes snowflake_gid_1_x_1{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(14px);}}
+@keyframes snowflake_gid_1_x_1{from{transform:translateX(0px)}to{transform:translateX(14px)}}@-webkit-keyframes snowflake_gid_1_x_2{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(16px);}}
+@keyframes snowflake_gid_1_x_2{from{transform:translateX(0px)}to{transform:translateX(16px)}}@-webkit-keyframes snowflake_gid_1_x_3{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(18px);}}
+@keyframes snowflake_gid_1_x_3{from{transform:translateX(0px)}to{transform:translateX(18px)}}@-webkit-keyframes snowflake_gid_1_x_4{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(20px);}}
+@keyframes snowflake_gid_1_x_4{from{transform:translateX(0px)}to{transform:translateX(20px)}}@-webkit-keyframes snowflake_gid_1_x_5{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(22px);}}
+@keyframes snowflake_gid_1_x_5{from{transform:translateX(0px)}to{transform:translateX(22px)}}@-webkit-keyframes snowflake_gid_1_x_6{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(24px);}}
+@keyframes snowflake_gid_1_x_6{from{transform:translateX(0px)}to{transform:translateX(24px)}}@-webkit-keyframes snowflake_gid_1_x_7{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(27px);}}
+@keyframes snowflake_gid_1_x_7{from{transform:translateX(0px)}to{transform:translateX(27px)}}@-webkit-keyframes snowflake_gid_1_x_8{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(29px);}}
+@keyframes snowflake_gid_1_x_8{from{transform:translateX(0px)}to{transform:translateX(29px)}}@-webkit-keyframes snowflake_gid_1_x_9{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(31px);}}
+@keyframes snowflake_gid_1_x_9{from{transform:translateX(0px)}to{transform:translateX(31px)}}@-webkit-keyframes snowflake_gid_1_x_10{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(33px);}}
+@keyframes snowflake_gid_1_x_10{from{transform:translateX(0px)}to{transform:translateX(33px)}}@-webkit-keyframes snowflake_gid_1_x_11{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(35px);}}
+@keyframes snowflake_gid_1_x_11{from{transform:translateX(0px)}to{transform:translateX(35px)}}@-webkit-keyframes snowflake_gid_1_x_12{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(37px);}}
+@keyframes snowflake_gid_1_x_12{from{transform:translateX(0px)}to{transform:translateX(37px)}}@-webkit-keyframes snowflake_gid_1_x_13{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(39px);}}
+@keyframes snowflake_gid_1_x_13{from{transform:translateX(0px)}to{transform:translateX(39px)}}@-webkit-keyframes snowflake_gid_1_x_14{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(42px);}}
+@keyframes snowflake_gid_1_x_14{from{transform:translateX(0px)}to{transform:translateX(42px)}}@-webkit-keyframes snowflake_gid_1_x_15{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(44px);}}
+@keyframes snowflake_gid_1_x_15{from{transform:translateX(0px)}to{transform:translateX(44px)}}@-webkit-keyframes snowflake_gid_1_x_16{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(46px);}}
+@keyframes snowflake_gid_1_x_16{from{transform:translateX(0px)}to{transform:translateX(46px)}}@-webkit-keyframes snowflake_gid_1_x_17{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(48px);}}
+@keyframes snowflake_gid_1_x_17{from{transform:translateX(0px)}to{transform:translateX(48px)}}@-webkit-keyframes snowflake_gid_1_x_18{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(50px);}}
+@keyframes snowflake_gid_1_x_18{from{transform:translateX(0px)}to{transform:translateX(50px)}}@-webkit-keyframes snowflake_gid_1_x_19{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(52px);}}
+@keyframes snowflake_gid_1_x_19{from{transform:translateX(0px)}to{transform:translateX(52px)}}@-webkit-keyframes snowflake_gid_1_x_20{from{-webkit-transform:translateX(0px)}to{-webkit-transform:translateX(55px);}}
+@keyframes snowflake_gid_1_x_20{from{transform:translateX(0px)}to{transform:translateX(55px)}}</style></body></html>
