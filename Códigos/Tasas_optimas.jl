@@ -1,6 +1,13 @@
+#### Importacion de librerías
+
 using PlotlyJS
 
 
+##### Establecimiento de carpeta de guardado de archivos
+
+cd("/home/jesus/Documentos/MEcon/Tesis-Posibles/Salop/Graficos")
+
+## Declaracion de variables
 tau_p = collect(1:0.01:2)
 tau_c = collect(1:0.01:2)
 
@@ -9,15 +16,22 @@ A = 1.5
 delta = 0.05
 rho = 0.1
 
+
+
+### Declaracio nde al funcio nde tasa del perimetro
 r_p(tau_p,tau_c,delta) = ((A^2)/(2*(tau_c + delta)*sqrt(tau_p - (1/(2*n)))))*(
     ( sqrt(tau_c + delta)-sqrt(tau_p - (1/(2*n))))/(3) + tau_p/(2*sqrt(tau_p - (1/(2*n))))
 ) + rho
 
+#### Tasa del centro
+r_c(tau_p,tau_c) = ((A^2)/(2*(tau_c + delta)*sqrt(tau_p - (1/(2*n)))))*(
+    (1/(4*n*sqrt(tau_p - (1/(2*n)))))
+    -( sqrt(tau_c + delta)-sqrt(tau_p - (1/(2*n))))/(3) + (tau_p*sqrt(tau_p - (1/(2*n))))/(2*(tau_c+delta))
+) + rho
 
 
 
-
-
+#### Generacion de Layout
 
 layout_per = Layout(title="Tasa de la firma del perimetro",
 scene=attr(
@@ -36,13 +50,14 @@ scene=attr(
     zaxis_title="Tasa de el banco",
     camera_eye=attr(x=2, y=2, z=0.5)))
 
-r_c(tau_p,tau_c) = ((A^2)/(2*(tau_c + delta)*sqrt(tau_p - (1/(2*n)))))*(
-    (1/(4*n*sqrt(tau_p - (1/(2*n)))))
-    -( sqrt(tau_c + delta)-sqrt(tau_p - (1/(2*n))))/(3) + (tau_p*sqrt(tau_p - (1/(2*n))))/(2*(tau_c+delta))
-) + rho
 
 
 tasa_ctr_surface = plot(surface(z= r_c.(tau_p',tau_c), x= tau_c, y = tau_p),layout)
+
+#### En teoria este codigo sirve para hacer multiples gráficos, de hecho si funciona
+#### Pero los cambios que prove no eran muy significativos para alterar el comportamiento 
+#### de las firmas, la reducción fue menor
+
 
 delta1 = 0.05
 r_p_1(tau_p,tau_c) = ((A^2)/(2*(tau_c + delta1)*sqrt(tau_p - (1/(2*n)))))*(

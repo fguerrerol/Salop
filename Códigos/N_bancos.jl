@@ -1,4 +1,8 @@
-#### Distingo el
+#### Inicializacion
+### carpeta de guardado
+cd("/home/jesus/Documentos/MEcon/Tesis-Posibles/Salop/Graficos")
+
+### Librerias y demas
 using PlotlyJS
 tau_c = 1
 A = 1.5 
