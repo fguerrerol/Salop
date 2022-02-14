@@ -1,7 +1,7 @@
 #### Inicialización de librerías  y seteo de directorio madre#####
 
 cd("/home/jesus/Documentos/MEcon/Tesis-Posibles/Salop/Graficos")
-using Plots
+using PlotlyJS
 
 
 #### Seccion dependiente de N #####
@@ -12,40 +12,47 @@ using Plots
 
 ### Para terminos de graficos va de 2 hasta 20
 n = collect(2:1:20)
-
+tau_p = 1
+tau_c = 1
 ### Inicialización de las funciones #####
 
 #### Modo 1: Sin Competencia con firma del centro #######
-theta_p_modo1(x) =  (A^2)/((tau_p+(1/(x)))^2)
-#### Modo 2: Con Competencia de la firma del centro ######
-theta_p_modo2(x) = (A^2)/(4*(delta+tau_c0)*(1-(1/(2*x))))
+
+demanda(x) = 2*x*(2/3)*(1/(2*x) +sqrt(tau_p - 1/(2*x))*sqrt(tau_c + delta) - tau_p)
+
+
+demanda_r(x) = (1/(2*x)) -(2/3)*(1/(2*x) +sqrt(tau_p - 1/(2*x))*sqrt(tau_c + delta) - tau_p)
+
+demanda_delta(x,y) = (2*x)*(2/3)*(1/(2*x) +sqrt(tau_p .- 1/(2*x))*sqrt(tau_c + y) - tau_p)
+
+
+
 
 
 ### Para terminos de determinar un nivel y ver la evolución, los costos 
 ### de diferenciacion se vuelven unitarios, el rendimiento del proyecto 
 #### será de 50%.
 tau_p = 1
-tau_c0 = 1
-A = 1.5
+tau_c = 1
+
 #### La distancia delta también tendrá inicialmente un nivel bajo
-delta = 0.2 
+delta = collect(0.01:0.01:0.1)
+n =collect(2:1:15) 
 
 
 #### Los gráficos se harán ambos considerando un nivel base y 
 #### mostrara que porcentaje se tiene del nivel base para los distintos n 
+demandas = demanda_delta.(n',delta)
+demandas_grafico = plot([scatter(x =eachindex(n) , y = demandas[jy,:],mode ="lines",name= "Delta = $(delta[jy])") for jy in eachindex(delta)],
+Layout(title ="Proporcion de demanda que conservan las firmas del perimetro", 
+    yaxis_title ="Proporcion",
+    xaxis_title ="Número de bancos"))
 
-baselined = (A^2)/((tau_p+(1/(2)))^2)
-baseline2 = (A^2)/(4*(delta+tau_c0)*(1-(1/(2*2))))
 
 ### Con esto ya se puede elaborar la función
 
-Grado_perimetro_modo1 = theta_p_modo1.(n)/baselined
+Porcentaje_demanda = demanda.(n)
 
-Grado_perimetro_modo2 = theta_p_modo2.(n)/baselined
-
-y=[Grado_perimetro_modo1,Grado_perimetro_modo2]
-
-v_names =["Sin firma al centro", "Con firma al centro"]
 Degree_plot = plot(n,y[1,:],linewidth=2,label=v_names[1],
 title = "Grado de diferenciacion de firma del perímetro",
 xlabel="Número de bancos")
@@ -54,23 +61,3 @@ plot!(n,y[2,:],linewidth=2,label=v_names[2])
 ylims!(0.1,2.5)
 savefig(Degree_plot,"Grado-Diff.png")
 
-
-
-
-n_2(x,y) = ((x^2)/(2*(1 -((1 - sqrt(9*y/2))^2)*(1 + delta))))
-
-
-grafo = plot(surface(A_v, F_v,n_2),title="Optimal Bank's number", xlabel="Project's Return", ylabel="Fixed Cost")
-
-
-
-
-A_v = collect(1.4:0.01:0.05) 
-n_2(x,y) = ((x^2)/(2*(1 -((1 - sqrt(9*y/2))^2)*(1 + delta))))
-
-n_3(x,y) = (A^2)/(2*(x -((1 - sqrt(9*F/2))^2)*(y + delta)))
-
-
-
-plot(n,Degree,title="Grado de diferenciacion bajo competencia con fintech",
-    xlabel= "Numero de bancos", ylabel="Nivel base")
