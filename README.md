@@ -1,5 +1,3 @@
 # Salop
-FIles for M.A Thesis, Salop's Circle for lenders with prodcut differentiation
-Codigos p
 
-No sean canas y no roben, o si roban etiquenteme al menos
+Archivos y demás utilizados para el desarrollo de Tesis de Maestría, en esta carpeta de Github se encontrarán tanto los códigos, los papers utilizados,los libros útiles y los gráficos elaborados para las distintas Fases
