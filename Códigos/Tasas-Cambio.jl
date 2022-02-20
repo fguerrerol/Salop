@@ -153,7 +153,7 @@ scene=attr(
          
             layout_n_banks2 = Layout(title="Número de bancos bajo costos fijos y de diferenciación ",
         scene=attr(
-            yaxis_title ="τ_centro",
+            yaxis_title ="Costos fijos",
             xaxis_title ="τₚ",
             zaxis_title="nₚ",
             camera_eye=attr(x=2, y=2, z=0.5)))
