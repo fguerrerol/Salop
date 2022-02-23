@@ -13,7 +13,7 @@
 #### 2 condiciones son 
 
 using PlotlyJS
-
+using LaTeXStrings
 
 
 
@@ -40,8 +40,10 @@ theta_p_cc(A,F,tau_p,tau_c,delta) = (A^2)/(4*(tau_c + delta)*(
 
 ### Parentesis, tasa de la fimra monopolica
 
-theta_c_cc(A,tau_c,delta) = (A^2)/(4*(tau_c + delta)^2)
-
+function theta_c_cc(A,tau_c,delta)
+    ### Grado de Diferenciación de la firma del centro
+    (A^2)/(4*(tau_c + delta)^2)
+end
 ### Tasas 
 ### Sin competencia al centro
 rate_p_sc(A,F,tau_p,rho) = theta_p_sc(A,F,tau_p)*(tau_p + 1/floor(n_sc(A,F,tau_p))) + rho
@@ -76,11 +78,15 @@ function real_demand_alone(A,F,tau_p,tau_c,delta,rho)
 end
 
 
+function  Welfare_simple(A,F,tau_p,rho)
+    ## Esta función computa los beneficios de la poblacion dado los
+    ## parametros exogenos que a su vez actuan sobre los endógenos
+    ## para esto se tiene que 
+    A*(1+sqrt(theta_p_sc(A,F,tau_p))) - rate_p_sc(A,F,tau_p,rho) - (theta_p_sc(A,F,tau_p))/(4*floor(n_sc(A,F,tau_p)))
+end
 
 
 
-F = collect(0.005:0.001:0.025)
-tau_p =collect(1.0:0.001:1.4)
 
 
 
@@ -153,8 +159,8 @@ scene=attr(
          
             layout_n_banks2 = Layout(title="Número de bancos bajo costos fijos y de diferenciación ",
         scene=attr(
-            yaxis_title ="Costos fijos",
-            xaxis_title ="τₚ",
+            yaxis_title ="τₚ",
+            xaxis_title ="Costos fijos",
             zaxis_title="nₚ",
             camera_eye=attr(x=2, y=2, z=0.5)))
          
@@ -166,12 +172,17 @@ scene=attr(
 
 ##### 
 #### Evaluación ###### 
+A=1.5
 
-bancos_cc = floor.(n_cc.(1.5,F',tau_p,1,0.12))
-bancos_sc = floor.(n_sc.(1.5,F',tau_p))
 
-degree_cc = theta_p_cc.(1.5,F',tau_p,1,0.12)
-degree_sc = theta_p_sc.(1.5,F',tau_p)
+F = collect(0.005:0.001:0.025)
+tau_p =collect(1.0:0.001:1.4)
+
+bancos_cc = floor.(n_cc.(A,F',tau_p,1,0.12))
+bancos_sc = floor.(n_sc.(A,F',tau_p))
+
+degree_cc = theta_p_cc.(A,F',tau_p,1,0.12)
+degree_sc = theta_p_sc.(A,F',tau_p)
 
 
 r_p_cc = rate_p_cc.(A,F',tau_p,1,0.12,0.12)
@@ -202,6 +213,12 @@ Layout(title ="Grado de diferenciacion de los bancos del perímetro",
     yaxis_title ="θₚ",
     xaxis_title ="Fixed cost"))
 
+deltas = collect(0.05:0.05:0.2)
+diff_centers_delta = theta_c_cc.(A,1,deltas')   
+rates_center_delta = rate_c_cc.(A,F2,1,1,collect(0.05:0.05:0.2)',0.06)
+
+
+
 
 rate_per_sc = rate_p_sc.(A,F2,1,0.06)
 
@@ -213,6 +230,18 @@ rates_plot = plot([scatter(x =F2 , y = rate_per[:,jy],mode ="lines",name= names[
 Layout(title ="Tasa de de los bancos del perímetro", 
     yaxis_title ="rₚ",
     xaxis_title ="Fixed cost"))
+
+    center_rates_plot = plot([scatter(x =F2 , y = rates_center_delta[:,jy],mode ="lines",name= "Delta = $(deltas[jy])") for jy in eachindex(deltas)],
+    Layout(title ="Tasa de de los bancos del perímetro", 
+        yaxis_title =L"r_c",
+        xaxis_title ="Fixed cost"))
+    
+    p  = [center_rates_plot rates_plot]
+    
+    relayout!(p, title_text="Tasas de los bancos")
+    
+
+
 
 
 #### Tasas con respecto a costos de diferenciacion
@@ -228,11 +257,13 @@ A = 1.5
 r_per_costs_cc = rate_p_cc.(A,F,tau_p,tau_c',0.1,0.12)
 r_center_costs_cc = rate_c_cc.(A,F,tau_p,tau_c',0.1,0.12)
 
-plot(surface(z= r_per_costes_cc, x= tau_p, y= tau_c,colorbar_x=0.2),layout_rate_perimeter)
-plot(surface(z= r_center_costes_cc, x= tau_p, y= tau_c,colorbar_x=0.8),layout_rate_centro)
+rp_plot1=plot(surface(z= r_per_costs_cc, x= tau_p, y= tau_c,colorbar_x=-0.2),layout_rate_perimeter)
+rc_plot1=plot(surface(z= r_center_costs_cc, x= tau_p, y= tau_c),layout_rate_centro)
+
+Combinados = [rp_plot1 rc_plot1]
 
 
-
+#### Función de beneficios 
 
 
 
@@ -243,14 +274,14 @@ tau_c = collect(0.9:0.01:1.2)
 F= 0.011
 delta = 0.06
 numero_bancos = floor.(n_cc.(1.5,0.005,tau_p,tau_c',0.1))
-Bank_number = plot(surface(z=numero_bancos,x=tau_p,y=tau_c)) 
+Bank_number = plot(surface(z=numero_bancos,x=tau_p,y=tau_c),layout_n_banks) 
 
 ### Bajo costos fijos y costos de diferenciación
 A = 1.5
 F = collect(0.0001:0.0001:0.001)
 tau_p = collect(1.1:0.01:1.8)
 n_bancos2 = floor.(n_cc.(A,F,tau_p',1,0.075))
-b_number2 = plot(surface(z=n_bancos2, x=F, y=tau_c),layout_n_banks2)
+b_number2 = plot(surface(z=n_bancos2, x=F, y=tau_p),layout_n_banks2)
 
 
 
@@ -266,7 +297,51 @@ delta=collect(0.03:0.01:0.14)
 demand_prop = real_demand.(A,F,tau_p,tau_c,delta',0.06)
 
 
-demands = plot([scatter(x = -F , y = demand_prop[:,jy],mode ="lines",name= "Delta = $(delta[jy])") for jy in eachindex(delta)],
+demands = plot([scatter(x = F , y = demand_prop[:,jy],mode ="lines",name= "Delta = $(delta[jy])") for jy in eachindex(delta)],
 Layout(title ="Proporcion de demanda conservada", 
-    yaxis_title ="Proporciónₚ",
+    yaxis_title ="Proporción",
     xaxis_title ="Costo Fijo"))
+
+tau_p = collect(0.8:0.01:1.6)
+tau_c = collect(1:0.1:1.4) 
+delta=0.1
+F= 0.06
+demand_prop2 = real_demand.(A,F,tau_p,tau_c',delta,0.06)
+
+demands = plot([scatter(x = tau_p , y = demand_prop2[:,jy],mode ="lines",name= "tau_c = $(tau_c[jy])") for jy in eachindex(tau_c)],
+Layout(title ="Proporcion de demanda conservada bajo costes de diff", 
+    yaxis_title ="Proporción",
+    xaxis_title ="τₚ"))
+
+tau_p = collect(0.85:0.05:1.2)
+F = collect(0.001:0.001:0.045)
+tau_c= 1
+demand_prop3 =  real_demand.(A,F,tau_p',tau_c,delta,0.06)
+demands2 = plot([scatter(x = F , y = demand_prop3[:,jy],mode ="lines",name= "tau_c = $(tau_p[jy])") for jy in eachindex(tau_p)],
+Layout(title ="Proporcion de demanda conservada bajo costes de diff", 
+    yaxis_title ="Proporción",
+    xaxis_title ="Fixed Costs"))
+
+
+
+
+tau_c = collect(0.8:0.01:1.5)
+delta= collect(0.06:0.01:0.15)
+
+A=1.5
+tau_p = 1
+F=0.005
+
+grado2c =theta_c_cc.(A,tau_c,delta')
+grado2p =theta_p_cc.(A,F,tau_p,tau_c,delta')
+
+
+rates_grado2c = plot([scatter(x =tau_c, y = grado2c[:,jy],mode ="lines",name= "δ_{c}  = $(tau_c[jy])") for jy in eachindex(delta)],
+Layout(title ="Grado de diferenciacion de los bancos del centro", 
+    yaxis_title =L"$\theta_c$",
+    xaxis_title ="tau_c"))
+
+rates_grado2p = plot([scatter(x =tau_c, y = grado2p[:,jy],mode ="lines",name= "δ_{c}  = $(tau_c[jy])") for jy in eachindex(delta)],
+Layout(title ="Grado de diferenciacion de los bancos del perímetro", 
+    yaxis_title =L"$ θ_p$",
+    xaxis_title ="tau_c"))
