@@ -55,4 +55,3 @@ bancos_plot_2 = plot(surface(z= n_3.(tau_p_eleccion',tau_c_eleccion), x= tau_c_e
 
 savefig(bancos_plot_2,"Bancos2.png")
 
-
